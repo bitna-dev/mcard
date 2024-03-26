@@ -33,6 +33,7 @@ const CardList = () => {
     fetchNextPage()
   }, [fetchNextPage, hasNextPage, isFetching])
   const cards = flatten(data?.pages.map(({ items }) => items))
+  console.log(data)
 
   if (data == null) {
     return null
@@ -45,7 +46,7 @@ const CardList = () => {
         next={loadMore}
         hasMore={hasNextPage}
         loader={<h4>Loading...</h4>}
-        scrollThreshold="200px"
+        scrollThreshold="30px"
       >
         <ul>
           {cards?.map((card, index) => {

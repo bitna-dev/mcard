@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/* "],
+      "@components/*": ["src/components/*"],
       "@shared/*": ["src/components/shared/*"],
       "@styles/*": ["src/styles/*"],
       "@contexts/*": ["src/contexts/*"],
@@ -12,7 +13,9 @@
       "@remote/*": ["src/remote/*"],
       "@mock/*": ["src/mock/*"],
       "@constants/*": ["src/constants/*"],
-      "@home/*": ["src/components/home/*"]
+      "@home/*": ["src/components/home/*"],
+      "@atoms/*": ["src/atoms/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   }
 }

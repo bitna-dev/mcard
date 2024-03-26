@@ -7,6 +7,7 @@ import Top from '@shared/Top'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { css } from '@emotion/react'
+import { easeInOut, motion } from 'framer-motion'
 
 const CardPage = () => {
   const { id = '' } = useParams()
@@ -26,14 +27,33 @@ const CardPage = () => {
       <Top title={`${corpName} ${name}`} subTitle={subTitle}></Top>
       <ul>
         {benefit.map((item, index) => (
-          <ListRow
-            left={<IconCheck />}
+          <motion.li
             key={item}
-            contents={
-              <ListRow.Texts title={`혜택 ${index + 1}`} subTitle={item} />
-            }
-            onClick={() => {}}
-          ></ListRow>
+            initial={{
+              opacity: 0,
+              translateX: -90,
+            }}
+            whileInView={{
+              opacity: 1,
+              translateX: 0,
+            }}
+            transition={{
+              duration: 0.5,
+              // ease: [0.25, 0.1, 0.25, 0.1],
+              ease: easeInOut,
+              delay: index * 0.1,
+            }}
+            // animate={{ opacity: 1, translateX: 0 }}
+          >
+            <ListRow
+              as="div"
+              left={<IconCheck />}
+              contents={
+                <ListRow.Texts title={`혜택 ${index + 1}`} subTitle={item} />
+              }
+              onClick={() => {}}
+            ></ListRow>
+          </motion.li>
         ))}
       </ul>
       {promotion != null ? (
@@ -44,7 +64,7 @@ const CardPage = () => {
           <Text typography="t8">{removeHtml(promotion.terms)}</Text>
         </Flex>
       ) : null}
-      <FixedBottomButton label="신청하기" onClick={() => {}} />
+      <FixedBottomButton disabled label="신청하기" onClick={() => {}} />
     </div>
   )
 }
